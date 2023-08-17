@@ -1,3 +1,4 @@
+RewriteOptions inherit
 <IfModule mod_rewrite.c>
     RewriteEngine on
     RewriteCond %{HTTPS} off

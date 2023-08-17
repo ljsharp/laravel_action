@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-SSL} !on
+    RewriteRule ^(.*)$ "https\:\/\/yourdomain\.com\/$1" [R=301,L]
+    RewriteCond %{HTTP_HOST} ^yourdomain.com$ [NC,OR]
+    RewriteCond %{HTTP_HOST} ^www.yourdomain.com$
+    RewriteCond %{REQUEST_URI} !public/
+    RewriteRule (.*) /public/$1 [L]
+</IfModule>
+
+<Files xmlrpc.php>
+    order deny,allow
+    deny from all
+</Files>
